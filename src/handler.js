@@ -85,23 +85,23 @@ const getAllBooksHandler = () => ({
   },
 });
 
-const getNoteByIdHandler = (request, h) => {
-  const { id } = request.params;
+const getBookByIdHandler = (request, h) => {
+  const { bookId } = request.params;
 
-  const note = notes.filter((n) => n.id === id)[0];
+  const book = books.filter((n) => n.id === bookId)[0];
 
-  if (note !== undefined) {
+  if (book !== undefined) {
     return {
       status: "success",
       data: {
-        note,
+        book,
       },
     };
   }
 
   const response = h.response({
     status: "fail",
-    message: "Catatan tidak ditemukan",
+    message: "Buku tidak ditemukan",
   });
   response.code(404);
   return response;
@@ -166,7 +166,7 @@ const deleteNoteByIdHandler = (request, h) => {
 module.exports = {
   addBookHandler,
   getAllBooksHandler,
-  getNoteByIdHandler,
+  getBookByIdHandler,
   editNoteByIdHandler,
   deleteNoteByIdHandler,
 };
